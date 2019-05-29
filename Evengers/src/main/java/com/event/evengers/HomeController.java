@@ -31,8 +31,24 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/joinFrm", method = RequestMethod.GET)
-	public String joinFrm() {
-		return "joinFrm";
+	public ModelAndView joinFrm() {
+		mav=new ModelAndView();
+		mav.setViewName("joinFrm");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/memberJoin", method = RequestMethod.GET)
+	public ModelAndView memberJoin() {
+		mav=new ModelAndView();
+		mav.setViewName("memberJoin");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/ceoJoin", method = RequestMethod.GET)
+	public ModelAndView ceoJoin() {
+		mav=new ModelAndView();
+		mav.setViewName("ceoJoin");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/memberInsert", method = RequestMethod.GET)
