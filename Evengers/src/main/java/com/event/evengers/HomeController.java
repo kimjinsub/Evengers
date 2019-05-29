@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.event.evengers.bean.Member;
 import com.event.evengers.service.MemberMM;
 
+
 @Controller
 public class HomeController {
 	
