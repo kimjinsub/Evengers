@@ -4,7 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <title>Insert title here</title>
+=======
+<title>Insert title here</title>
+>>>>>>> branch 'master' of https://github.com/kimjinsub/Evengers
 <style>
 .btn1 {
   background: #3498db;
