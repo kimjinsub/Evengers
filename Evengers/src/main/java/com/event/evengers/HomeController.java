@@ -34,10 +34,9 @@ public class HomeController {
 	MemberMM mm;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home() {
-		mav = new ModelAndView();
-		mav.setViewName("home");
-		return mav;
+
+	public String home() {
+		return "index";
 	}
 	
 	@RequestMapping(value = "/joinFrm", method = RequestMethod.GET)
