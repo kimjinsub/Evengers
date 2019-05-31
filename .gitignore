@@ -1,4 +1,6 @@
 Evengers/target
-.classpath
-.project
+Evengers/.classpath
+Evengers/.project
+Evengers/.settings
+*.class
 
