@@ -25,10 +25,10 @@ public class MemberMM {
 		mb.setM_email(mb.getM_email()+mb.getM_email1());
 		
 		if (mDao.memberInsert(mb)) {
-			view = "home";
+			view = "index";
 			mav.addObject("check", 1); //회원가입 성공
 		} else {
-			view = "joinFrm";
+			view = "index";
 		}
 		mav.setViewName(view);
 		return mav;
@@ -42,7 +42,7 @@ public class MemberMM {
 		mb.setC_email(mb.getC_email()+mb.getC_email1());
 		
 		if (mDao.ceoInsert(mb)) {
-			view = "home";
+			view = "index";
 			mav.addObject("check", 1); //회원가입 성공
 		} else {
 			view = "joinFrm";

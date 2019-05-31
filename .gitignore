@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-﻿Evengers/target/
+Evengers/target/
 Evengers/.classpath
 Evengers/.project
-=======
-Evengers/target
-.classpath
-.project
-
->>>>>>> branch 'master' of https://github.com/kimjinsub/Evengers.git
+*.class
