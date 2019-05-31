@@ -5,13 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
-
-import org.omg.CORBA.Request;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import org.omg.CORBA.Request;
 import org.slf4j.Logger;
@@ -23,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartHttpServletRequest;import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.event.evengers.bean.Member;
 import com.event.evengers.service.EventMM;
@@ -32,7 +26,6 @@ import com.event.evengers.service.MemberMM;
 
 @Controller
 public class HomeController {
-	
 	ModelAndView mav;
 	@Autowired
 	MemberMM mm;
@@ -40,6 +33,7 @@ public class HomeController {
 	EventMM em;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+
 	public String home() {
 		return "index";
 	}
@@ -131,7 +125,6 @@ public class HomeController {
 		return mav;
 	}
 	
-	
 	@RequestMapping(value = "/memberDoubleChk", method = RequestMethod.POST)
 	@ResponseBody
 	public int memberDoubleChk(HttpServletRequest req){
@@ -170,9 +163,5 @@ public class HomeController {
 		}
 		return result;
 	}
-
-
-
-	
 }
 
