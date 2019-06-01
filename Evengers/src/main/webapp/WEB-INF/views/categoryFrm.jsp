@@ -12,7 +12,7 @@
 	cursor: pointer;
 	size: 3px;
 }
-</style>
+</style>ㅇ
 </head>
 <body>
 	<h2>카테고리 설정</h2>

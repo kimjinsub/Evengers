@@ -35,13 +35,12 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 
 	public String home() {
-		return "index";
+		return "home";
 	}
-	@RequestMapping(value = "/bootTest", method = RequestMethod.GET)
+	@RequestMapping(value = "/boot", method = RequestMethod.GET)
 	public String bootTest() {
-		return "bootStrap";
+		return "boot";
 	}
-	
 	@RequestMapping(value = "/joinFrm", method = RequestMethod.GET)
 	public ModelAndView joinFrm() {
 		mav=new ModelAndView();

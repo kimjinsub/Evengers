@@ -20,8 +20,7 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/img/**" location="/WEB-INF/views/img/"/>
 	<resources mapping="/js/**" location="/WEB-INF/views/js/" />
-	<resources mapping="/img/**" location="/WEB-INF/views/img/"/>
-	<resources mapping="/js/**" location="/WEB-INF/views/js/" />
+	<resources mapping="/css/**" location="/WEB-INF/views/css/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -36,7 +35,7 @@
 		<beans:property name="driverClassName"
 						value="net.sf.log4jdbc.DriverSpy"/>
 		<beans:property name="url"
-						value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe"/>
+						value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl"/>
 		<beans:property name="username"
 						value="ICIA_REAL"/>
 		<beans:property name="password"

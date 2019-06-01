@@ -1,13 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<meta charset="utf-8">
-<link rel="stylesheet" href="../../resources/css/all.css">
-<link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
-<script src="../../resources/js/bootstrap.bundle.min.js"></script>
-<script src="../../resources/js/jquery.slim.min.js"></script>
-
 <head>
-    <style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/all.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js" /></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.slim.min.js" /></script>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap&subset=korean" rel="stylesheet">
+<style>
         :root {
             --input-padding-x: 1.5rem;
             --input-padding-y: .75rem;
@@ -120,8 +123,8 @@
         }
     </style>
 </head>
-
 <body>
+<%-- <img src="${pageContext.request.contextPath}/img/tiger.png"/> --%>
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
