@@ -28,5 +28,8 @@
    <select id="getEvtList" parameterType="String" resultType="event">
         SELECT * FROM E WHERE E_CATEGORY=#{ec_name}
    </select>
-
+	
+	<insert id="evtImageInsert" parameterType="eventimage">
+         INSERT INTO EI VALUES('EI'||LPAD(EI_SEQ.NEXTVAL,4,0),#{ei_orifilename},#{ei_sysfilename},#{e_code})
+   	</insert>
 </mapper>

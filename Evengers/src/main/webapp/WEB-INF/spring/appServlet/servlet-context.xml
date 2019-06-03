@@ -79,4 +79,5 @@
 		<beans:property name="maxUploadSize" value="10000000"/><!-- 10MB -->
 		<beans:property name="maxInMemorySize" value="10000000"/>
 	</beans:bean>
+
 </beans:beans>

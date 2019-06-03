@@ -325,6 +325,7 @@ public class HomeController {
 		}
 		return result;
 	}
+	
 	@RequestMapping(value = "/evtReqFrm", method = RequestMethod.GET)
 	public ModelAndView evtReqFrm() {
 		mav=new ModelAndView();
@@ -379,53 +380,6 @@ public class HomeController {
 		mav.setViewName("myReqList");
 		return mav;
 	}
-	@RequestMapping(value = "/mInfo", method = RequestMethod.GET)
-	public ModelAndView mInfo() {
-		mav = new ModelAndView();
-		mav.setViewName("mInfo");
-		return mav;
-	}
-	@RequestMapping(value = "/memberInfo", method = RequestMethod.GET)
-	public ModelAndView memberInfo() {
-		mav = new ModelAndView();
-		mav.setViewName("memberInfo");
-		return mav;
-	}
-	@RequestMapping(value = "/mInfoModify", method = RequestMethod.GET)
-	public ModelAndView mInfoModify() {
-		mav = new ModelAndView();
-		mav.setViewName("mInfoModify");
-		return mav;
-	}
-	@RequestMapping(value = "/payList", method = RequestMethod.GET)
-	public ModelAndView payList() {
-		mav = new ModelAndView();
-		mav.setViewName("payList");
-		return mav;
-	}
-	@RequestMapping(value = "/choiceList", method = RequestMethod.GET)
-	public ModelAndView choiceList() {
-		mav = new ModelAndView();
-		mav.setViewName("choiceList");
-		return mav;
-	}
-	@RequestMapping(value = "/receivedList", method = RequestMethod.GET)
-	public ModelAndView receivedList() {
-		mav = new ModelAndView();
-		mav.setViewName("receivedList");
-		return mav;
-	}
-	@RequestMapping(value = "/receivedEstList", method = RequestMethod.GET)
-	public ModelAndView receivedEstList() {
-		mav = new ModelAndView();
-		mav.setViewName("receivedEstList");
-		return mav;
-	}
-	@RequestMapping(value = "/myReqList", method = RequestMethod.GET)
-	public ModelAndView myReqList() {
-		mav = new ModelAndView();
-		mav.setViewName("myReqList");
-		return mav;
-	}
+
 }
 
