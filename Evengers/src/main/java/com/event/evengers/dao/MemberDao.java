@@ -18,4 +18,5 @@ public interface MemberDao {
 
 	String testDao(String testcode);
 
+
 }

@@ -149,9 +149,10 @@ public class HomeController {
 		System.out.println("ff" + multi.getParameter("e_price"));
 		System.out.println("ff" + multi.getParameter("e_name"));
 		mav = em.evtInsert(multi);
+
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/ceoInsert", method = RequestMethod.POST)
 	public ModelAndView ceoInsert(Ceo cb) {
 		mav = new ModelAndView();
@@ -165,8 +166,8 @@ public class HomeController {
 		String m_id = req.getParameter("m_id");
 		int idCheck = mm.memberDoubleChk(m_id);
 		int result = 0;
-		
-		if(idCheck >0) {
+
+		if (idCheck > 0) {
 			result = 1;
 		}
 		return result;
@@ -174,12 +175,12 @@ public class HomeController {
 
 	@RequestMapping(value = "/ceoDoubleChk", method = RequestMethod.POST)
 	@ResponseBody
-	public int ceoDoubleChk(HttpServletRequest req){
+	public int ceoDoubleChk(HttpServletRequest req) {
 		String c_id = req.getParameter("c_id");
 		int idCheck = mm.memberDoubleChk(c_id);
 		int result = 0;
-		
-		if(idCheck >0) {
+
+		if (idCheck > 0) {
 			result = 1;
 		}
 		return result;
@@ -187,12 +188,12 @@ public class HomeController {
 
 	@RequestMapping(value = "/ceoCheckNumber", method = RequestMethod.POST)
 	@ResponseBody
-	public int ceoCheckNumber(HttpServletRequest req){
+	public int ceoCheckNumber(HttpServletRequest req) {
 		String c_rn = req.getParameter("c_rn");
 		int numCheck = cm.ceoCheckNumber(c_rn);
 		int result = 0;
-		
-		if(numCheck >0) {
+
+		if (numCheck > 0) {
 			result = 1;
 		}
 		return result;

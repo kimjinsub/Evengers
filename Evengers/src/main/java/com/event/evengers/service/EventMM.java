@@ -2,11 +2,13 @@ package com.event.evengers.service;
 
 import java.util.ArrayList;
 import java.util.Locale.Category;
-
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.omg.CORBA.Request;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.event.evengers.bean.Event;
@@ -22,7 +24,8 @@ public class EventMM {
 	EventDao eDao;
 	@Autowired
 	UploadFile file;
-	
+	   @Autowired
+	   private HttpSession session;
 	
 	public String addCategory(String ec_name) {
 		boolean result=eDao.addCategory(ec_name);
@@ -100,7 +103,7 @@ public class EventMM {
 	      mav.setViewName(view);
 	      return mav;
 	   }
-	
+
 	public String getEvtList(String ec_name) {
         String json_evtList="";
         ArrayList<Event> evtList=eDao.getEvtList(ec_name);
@@ -108,4 +111,5 @@ public class EventMM {
         json_evtList=gson.toJson(evtList);
       return json_evtList;
    }
+
 }

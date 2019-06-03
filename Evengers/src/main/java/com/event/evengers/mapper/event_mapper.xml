@@ -28,5 +28,5 @@
    <select id="getEvtList" parameterType="String" resultType="event">
         SELECT * FROM E WHERE E_CATEGORY=#{ec_name}
    </select>
-   
+
 </mapper>

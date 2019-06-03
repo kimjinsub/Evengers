@@ -20,4 +20,5 @@ public interface EventDao {
 	public String getEvtCode(String c_id);
 
 	ArrayList<Event> getEvtList(String ec_name);
+
 }

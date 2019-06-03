@@ -1,5 +1,7 @@
 package com.event.evengers.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -76,5 +78,6 @@ public String memberTest(String testcode) {
 		 */
 		return msg;
 	}
+
 
 }
