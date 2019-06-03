@@ -33,6 +33,7 @@ public class HomeController {
 	EventMM em;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
+
 	public String home() {
 		return "index";
 	}
@@ -48,6 +49,12 @@ public class HomeController {
 	public ModelAndView joinFrm() {
 		mav=new ModelAndView();
 		mav.setViewName("joinFrm");
+		return mav;
+	}
+	@RequestMapping(value = "/evtInsertFrm", method = RequestMethod.GET)
+	public ModelAndView evtInsertFrm() {
+		mav=new ModelAndView();
+		mav.setViewName("evtInsertFrm");
 		return mav;
 	}
 	
@@ -76,13 +83,6 @@ public class HomeController {
 	public @ResponseBody String sessionTest(String testcode) {
 		String msg = mm.memberTest(testcode);
 		return msg;
-	}
-
-	@RequestMapping(value = "/evtInsertFrm", method = RequestMethod.GET)
-	public ModelAndView evtInsertFrm() {
-		mav = new ModelAndView();
-		mav.setViewName("evtInsertFrm");
-		return mav;
 	}
 
 	@RequestMapping(value = "/getEvtCategory", method = RequestMethod.GET)

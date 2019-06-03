@@ -10,6 +10,7 @@ import lombok.Setter;
 @Data
 @Getter @Setter
 public class Member {
+
    //회원
    private String m_id;
    private String m_pw;
@@ -29,3 +30,4 @@ public class Member {
    private String c_rn;
    
 }
+
