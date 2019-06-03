@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.event.evengers.dao.EventDao">
+<select id="getCategories" resultType="eventcategory">
+      SELECT * FROM EC
+   </select>
+   
+      <insert id="evtInsert" parameterType="event">
+      INSERT INTO E VALUES(E_SEQ.NEXTVAL,#{e_name},#{c_id},#{e_price},#{e_category},#{e_reservedate},#{e_refunddate},#{e_contents},#{e_orifilename},#{e_sysfilename})
+   </insert>
+   
+      <insert id="evtOptionInsert" parameterType="eventoption">
+         INSERT INTO EO VALUES(EO_SEQ.NEXTVAL,#{eo_name},#{eo_price},#{e_code})
+   </insert>
+   
+   <select id="getEvtList" parameterType="String" resultType="event">
+        SELECT * FROM E WHERE E_CATEGORY=#{ec_name}
+   </select>
+ </mapper>

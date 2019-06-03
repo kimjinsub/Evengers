@@ -12,10 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.event.evengers.bean.Member;
+import com.event.evengers.service.EventMM;
 import com.event.evengers.service.MemberMM;
+import com.google.gson.Gson;
 
 @Controller
 public class HomeController {
@@ -24,6 +27,8 @@ public class HomeController {
 	ModelAndView mav;
 	@Autowired
 	MemberMM mm;
+	@Autowired
+	EventMM em;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
@@ -58,5 +63,36 @@ public class HomeController {
 		System.out.println("test2");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/sessionTest", method = RequestMethod.GET,produces = "application/json; charset=utf8")
+	public @ResponseBody String sessionTest(String testcode) {
+		String msg=mm.memberTest(testcode);
+		return msg;
+	}
+	
+	   @RequestMapping(value = "/getCategoryList", produces = "application/json; charset=utf-8")
+	   public @ResponseBody String getCategoryList() {
+	      String json_categories=em.getCategoryList();
+	      return json_categories;
+	   }
+	   @RequestMapping(value = "/evtInsertFrm", method = RequestMethod.GET)
+	   public ModelAndView evtInsertFrm() {
+	      mav = new ModelAndView();
+	      mav.setViewName("evtInsertFrm");
+	      return mav;
+	   }
+		@RequestMapping(value = "/getEvtCategory", method = RequestMethod.GET)
+		public ModelAndView getEvtCategory() {
+			mav=new ModelAndView();
+			mav.setViewName("category");
+			return mav;
+		}
+		@RequestMapping(value = "/getEvtList", produces = "application/json; charset=utf-8")
+		   public @ResponseBody String getEvtList(String ec_name) {
+			System.out.println("ec_name="+ec_name);
+		      String json_evtList=em.getEvtList(ec_name);
+		      System.out.println(json_evtList);
+		      return json_evtList;
+		   }
 }
 

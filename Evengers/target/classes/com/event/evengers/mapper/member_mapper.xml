@@ -6,4 +6,7 @@
 	<insert id="memberInsert">
 		INSERT INTO MEM VALUES(#{id},#{pw},#{name},#{email})
 	</insert>
+	<select id="testDao" resultType="String">
+	    SELECT M_ID FROM MEMBER WHERE M_ID=#{testcode}
+	</select>
 </mapper>
