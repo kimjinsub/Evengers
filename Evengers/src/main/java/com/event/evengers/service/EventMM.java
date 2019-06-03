@@ -107,11 +107,12 @@ public class EventMM {
 	   }
 
 	public String getEvtList(String ec_name) {
-		  String json_evtList="";
-		  ArrayList<Event> evtList=eDao.getEvtList(ec_name);
-		  Gson gson=new Gson();
-		  json_evtList=gson.toJson(evtList);
-		return json_evtList;
-	}
+
+        String json_evtList="";
+        ArrayList<Event> evtList=eDao.getEvtList(ec_name);
+        Gson gson=new Gson();
+        json_evtList=gson.toJson(evtList);
+      return json_evtList;
+   }
 
 }

@@ -27,12 +27,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.event.evengers.bean.Email;
 import com.event.evengers.bean.EmailSender;
+
+import com.event.evengers.bean.Ceo;
 import com.event.evengers.bean.Member;
 
 import com.event.evengers.bean.TempKey;
 
+import com.event.evengers.service.CeoMM;
 import com.event.evengers.service.EventMM;
 import com.event.evengers.dao.MemberDao;
 
@@ -47,7 +51,11 @@ public class HomeController {
 	@Autowired
 	MemberMM mm;
 	@Autowired
+
 	private HttpSession session;
+	@Autowired
+	CeoMM cm;
+
 	@Autowired
 	EventMM em;
 
@@ -270,13 +278,14 @@ public class HomeController {
 		System.out.println("ff" + multi.getParameter("e_price"));
 		System.out.println("ff" + multi.getParameter("e_name"));
 		mav = em.evtInsert(multi);
+
 		return mav;
 	}
 
 	@RequestMapping(value = "/ceoInsert", method = RequestMethod.POST)
-	public ModelAndView ceoInsert(Member mb) {
+	public ModelAndView ceoInsert(Ceo cb) {
 		mav = new ModelAndView();
-		mav = mm.ceoInsert(mb);
+		mav=cm.ceoInsert(cb);
 		return mav;
 	}
 
@@ -310,7 +319,7 @@ public class HomeController {
 	@ResponseBody
 	public int ceoCheckNumber(HttpServletRequest req) {
 		String c_rn = req.getParameter("c_rn");
-		int numCheck = mm.ceoCheckNumber(c_rn);
+		int numCheck = cm.ceoCheckNumber(c_rn);
 		int result = 0;
 
 		if (numCheck > 0) {
