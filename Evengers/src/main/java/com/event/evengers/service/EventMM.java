@@ -2,11 +2,11 @@ package com.event.evengers.service;
 
 import java.util.ArrayList;
 import java.util.Locale.Category;
-
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
-import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.omg.CORBA.Request;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,25 +16,43 @@ import com.event.evengers.bean.EventOption;
 import com.event.evengers.dao.EventDao;
 import com.event.evengers.userClass.UploadFile;
 import com.google.gson.Gson;
+
 @Service
 public class EventMM {
-	   private ModelAndView mav;
+	ModelAndView mav;
 	@Autowired
-	private EventDao eDao;
-	
+	EventDao eDao;
+	@Autowired
+	UploadFile file;
 	   @Autowired
 	   private HttpSession session;
-	   //@Autowired
-	   //private Event eb;
-	   
-	   //@Autowired
-	   //private EventOption eob;
-	   
-	   
-	   @Autowired
-	   private UploadFile file;
-	   
-	   public ModelAndView evtInsert(MultipartHttpServletRequest multi) {
+	
+	public String addCategory(String ec_name) {
+		boolean result=eDao.addCategory(ec_name);
+		String msg="";
+		if(result) {
+			msg="성공";
+		}
+		return msg;
+	}
+	
+	public String getCategoryList() {
+		String json_categories="";
+		ArrayList<Category> categoryList=eDao.getCategories();
+		Gson gson = new Gson();
+		json_categories=gson.toJson(categoryList);
+		return json_categories;
+	}
+
+	public String deleteCategory(String ec_name) {
+		boolean result=eDao.deleteCategory(ec_name);
+		String msg="";
+		if(result) {
+			msg="성공";
+		}
+		return msg;
+	}
+	public ModelAndView evtInsert(HttpServletRequest multi) {
 	      mav = new ModelAndView();
 	      
 	      String e_name = multi.getParameter("e_name");
@@ -47,7 +65,7 @@ public class EventMM {
 	      String e_orifilename = multi.getParameter("e_orifilename");
 	      
 	      String e_sysfilename = file.fileUp(multi, 1); //1이면 이벤트 썸네일 사진
-	      Event eb = new Event(); 
+	      Event eb = new Event();
 	      eb.setE_name(e_name);
 	      /* eb.setC_id(c_id); */
 	      eb.setC_id("aaa");
@@ -59,29 +77,32 @@ public class EventMM {
 	      eb.setE_orifilename(e_orifilename);
 	      eb.setE_sysfilename(e_sysfilename);
 	      
-	      EventOption eob = new EventOption();
-	      
 	      String view = null;
 	      if (eDao.evtInsert(eb)) {
-	         if(eDao.evtOptionInsert(eob)) {
+	         
+	         String e_code = eDao.getEvtCode(eb.getC_id());
+	         
+	         String[] eo_names = multi.getParameter("eo_name").split(",");
+	         String[] eo_prices = multi.getParameter("eo_price").split(",");
+	         int cnt=0;
+	         for(int i=0;i<eo_names.length;i++) {
+	            EventOption eob = new EventOption();
+	            eob.setEo_name(eo_names[i]);
+	            eob.setEo_price(Integer.parseInt(eo_prices[i]));
+	            eob.setE_code(e_code);
+	            if(eDao.evtOptionInsert(eob)) {
+	               cnt++;
+	            }
+	         }
+	         if(cnt==eo_names.length) {
 	            view = "home";
 	         }
-	      } else
+	      } else {
 	         view = "evtInsertFrm";
-
+	      }
 	      mav.setViewName(view);
 	      return mav;
 	   }
-
-	
-	  public String getCategoryList() {
-	      String json_categories="";
-	      ArrayList<Category> categoryList=eDao.getCategories();
-	      Gson gson = new Gson();
-	      json_categories=gson.toJson(categoryList);
-	      return json_categories;
-	   }
-
 
 	public String getEvtList(String ec_name) {
 		  String json_evtList="";
@@ -91,6 +112,4 @@ public class EventMM {
 		return json_evtList;
 	}
 	
-
-
 }

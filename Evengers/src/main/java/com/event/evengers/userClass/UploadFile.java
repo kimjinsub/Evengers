@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.event.evengers.dao.EventDao;
 @Component
@@ -28,7 +30,7 @@ public class UploadFile {
    @Autowired
    private EventDao eDao;
    
-   public String fileUp(MultipartHttpServletRequest multi,int param){
+   public String fileUp(HttpServletRequest multi,int param){
       String e_sysfilename = null;
       switch(param) {
       case 1: //썸네일 사진
@@ -39,7 +41,7 @@ public class UploadFile {
          if(!dir.isDirectory()){  //upload폴더 없다면
             dir.mkdirs();  //upload폴더 생성
          }
-         MultipartFile file = multi.getFile("file");
+         MultipartFile file = ((MultipartRequest) multi).getFile("file");
          String e_orifilename = file.getOriginalFilename();
          e_sysfilename=System.currentTimeMillis()+"."//현재 시간
                +e_orifilename.substring(e_orifilename.lastIndexOf(".")+1);
@@ -81,4 +83,7 @@ public class UploadFile {
          os.close();
          is.close();
       }
+   
+   
+   
 }
