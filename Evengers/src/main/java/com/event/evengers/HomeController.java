@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.event.evengers.bean.Email;
@@ -274,11 +275,8 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/evtInsert")
-	public ModelAndView evtInsert(HttpServletRequest multi) {
-		System.out.println("ff" + multi.getParameter("e_price"));
-		System.out.println("ff" + multi.getParameter("e_name"));
+	public ModelAndView evtInsert(MultipartHttpServletRequest multi) {
 		mav = em.evtInsert(multi);
-
 		return mav;
 	}
 

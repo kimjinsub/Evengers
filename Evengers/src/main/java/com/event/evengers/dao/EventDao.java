@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Locale.Category;
 
 import com.event.evengers.bean.Event;
+import com.event.evengers.bean.EventImage;
 import com.event.evengers.bean.EventOption;
 
 public interface EventDao {
@@ -20,5 +21,7 @@ public interface EventDao {
 	public String getEvtCode(String c_id);
 
 	ArrayList<Event> getEvtList(String ec_name);
+	
+	public boolean evtImageInsert(EventImage ei);
 
 }
