@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.event.evengers.bean.Ceo;
 import com.event.evengers.bean.Member;
+import com.event.evengers.service.CeoMM;
 import com.event.evengers.service.EventMM;
 import com.event.evengers.dao.MemberDao;
 import com.event.evengers.service.MemberMM;
@@ -29,6 +31,8 @@ public class HomeController {
 	ModelAndView mav;
 	@Autowired
 	MemberMM mm;
+	@Autowired
+	CeoMM cm;
 	@Autowired
 	EventMM em;
 	
@@ -78,11 +82,33 @@ public class HomeController {
 		mav=mm.memberInsert(mb);
 		return mav;
 	}
-	
+
+	@RequestMapping(value = "/sessionTest", method = RequestMethod.GET, produces = "application/json; charset=utf8")
+	public @ResponseBody String sessionTest(String testcode) {
+		String msg = mm.memberTest(testcode);
+		return msg;
+	}
+
+	@RequestMapping(value = "/getEvtCategory", method = RequestMethod.GET)
+	public ModelAndView getEvtCategory() {
+		mav = new ModelAndView();
+		mav.setViewName("category");
+		return mav;
+	}
+
+	@RequestMapping(value = "/getEvtList", produces = "application/json; charset=utf-8")
+	public @ResponseBody String getEvtList(String ec_name) {
+		System.out.println("ec_name=" + ec_name);
+		String json_evtList = em.getEvtList(ec_name);
+		System.out.println(json_evtList);
+		return json_evtList;
+	}
+
 	@RequestMapping(value = "/categoryFrm", method = RequestMethod.GET)
 	public String categoryFrm() {
 		return "categoryFrm";
 	}
+
 	@RequestMapping(value = "/carryOption")
 	public ModelAndView carryOption(HttpServletRequest multi) {
 		mav = new ModelAndView();
@@ -93,44 +119,49 @@ public class HomeController {
 		mav.setViewName("home");
 		return mav;
 	}
+
 	@RequestMapping(value = "/addCategory", produces = "application/json; charset=utf-8")
 	public @ResponseBody String addCategory(String ec_name) {
-		String msg=em.addCategory(ec_name);
+		String msg = em.addCategory(ec_name);
 		return msg;
 	}
+
 	@RequestMapping(value = "/getCategoryList", produces = "application/json; charset=utf-8")
 	public @ResponseBody String getCategoryList() {
-		String json_categories=em.getCategoryList();
+		String json_categories = em.getCategoryList();
 		return json_categories;
 	}
+
 	@RequestMapping(value = "/deleteCategory", produces = "application/json; charset=utf-8")
 	public @ResponseBody String deleteCategory(String ec_name) {
-		String msg=em.deleteCategory(ec_name);
+		String msg = em.deleteCategory(ec_name);
 		return msg;
 	}
+
 	@RequestMapping(value = "/selectCategory", produces = "application/json; charset=utf-8")
 	public @ResponseBody String selectCategory() {
-		String json_categories=em.getCategoryList();
+		String json_categories = em.getCategoryList();
 		return json_categories;
 	}
+
 	@RequestMapping(value = "/evtInsert")
-	   public ModelAndView evtInsert(HttpServletRequest multi) {
-	      System.out.println("ff"+multi.getParameter("e_price"));
-	      System.out.println("ff"+multi.getParameter("e_name"));
-	      mav = em.evtInsert(multi);
-	      return mav;
-	}
-	
-	@RequestMapping(value = "/ceoInsert", method = RequestMethod.POST)
-	public ModelAndView ceoInsert(Member mb) {
-		mav = new ModelAndView();
-		mav=mm.ceoInsert(mb);
+	public ModelAndView evtInsert(HttpServletRequest multi) {
+		System.out.println("ff" + multi.getParameter("e_price"));
+		System.out.println("ff" + multi.getParameter("e_name"));
+		mav = em.evtInsert(multi);
 		return mav;
 	}
 	
+	@RequestMapping(value = "/ceoInsert", method = RequestMethod.POST)
+	public ModelAndView ceoInsert(Ceo cb) {
+		mav = new ModelAndView();
+		mav=cm.ceoInsert(cb);
+		return mav;
+	}
+
 	@RequestMapping(value = "/memberDoubleChk", method = RequestMethod.POST)
 	@ResponseBody
-	public int memberDoubleChk(HttpServletRequest req){
+	public int memberDoubleChk(HttpServletRequest req) {
 		String m_id = req.getParameter("m_id");
 		int idCheck = mm.memberDoubleChk(m_id);
 		int result = 0;
@@ -140,7 +171,7 @@ public class HomeController {
 		}
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/ceoDoubleChk", method = RequestMethod.POST)
 	@ResponseBody
 	public int ceoDoubleChk(HttpServletRequest req){
@@ -153,12 +184,12 @@ public class HomeController {
 		}
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/ceoCheckNumber", method = RequestMethod.POST)
 	@ResponseBody
 	public int ceoCheckNumber(HttpServletRequest req){
 		String c_rn = req.getParameter("c_rn");
-		int numCheck = mm.ceoCheckNumber(c_rn);
+		int numCheck = cm.ceoCheckNumber(c_rn);
 		int result = 0;
 		
 		if(numCheck >0) {

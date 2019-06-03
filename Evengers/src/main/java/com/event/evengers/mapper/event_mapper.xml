@@ -4,15 +4,15 @@
 
 <mapper namespace="com.event.evengers.dao.EventDao">
 	<insert id="addCategory" parameterType="String">
-		INSERT INTO EC VALUES(#{ec_name})
-	</insert>
-	<select id="getCategories" resultType="eventcategory">
-		SELECT * FROM EC
-	</select>
-	<delete id="deleteCategory" parameterType="String">
-		DELETE FROM EC WHERE EC_NAME=#{ec_name}
-	</delete>
-	
+      INSERT INTO EC VALUES(#{ec_name})
+   </insert>
+   <select id="getCategories" resultType="eventcategory">
+      SELECT * FROM EC
+   </select>
+   <delete id="deleteCategory" parameterType="String">
+      DELETE FROM EC WHERE EC_NAME=#{ec_name}
+   </delete>
+   
    <insert id="evtInsert" parameterType="event">
       INSERT INTO E VALUES('E'||LPAD(E_SEQ.NEXTVAL,4,0),#{e_name},#{c_id},#{e_price},#{e_category},#{e_reservedate},#{e_refunddate},#{e_contents},#{e_orifilename},#{e_sysfilename})
    </insert>
@@ -24,4 +24,9 @@
    <insert id="evtOptionInsert" parameterType="eventoption">
          INSERT INTO EO VALUES('EO'||LPAD(EO_SEQ.NEXTVAL,4,0),#{eo_name},#{eo_price},#{e_code})
    </insert>
+   
+   <select id="getEvtList" parameterType="String" resultType="event">
+        SELECT * FROM E WHERE E_CATEGORY=#{ec_name}
+   </select>
+   
 </mapper>

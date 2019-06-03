@@ -18,4 +18,6 @@ public interface EventDao {
 	public boolean evtOptionInsert(EventOption eob);
 	
 	public String getEvtCode(String c_id);
+
+	ArrayList<Event> getEvtList(String ec_name);
 }

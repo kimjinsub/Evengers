@@ -100,4 +100,12 @@ public class EventMM {
 	      mav.setViewName(view);
 	      return mav;
 	   }
+	
+	public String getEvtList(String ec_name) {
+        String json_evtList="";
+        ArrayList<Event> evtList=eDao.getEvtList(ec_name);
+        Gson gson=new Gson();
+        json_evtList=gson.toJson(evtList);
+      return json_evtList;
+   }
 }
