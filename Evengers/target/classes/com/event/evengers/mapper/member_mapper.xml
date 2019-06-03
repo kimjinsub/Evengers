@@ -3,9 +3,26 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.event.evengers.dao.MemberDao">
+	
 	<insert id="memberInsert">
-		INSERT INTO MEM VALUES(#{id},#{pw},#{name},#{email})
+		INSERT INTO M VALUES(#{m_id},#{m_pw},#{m_name},#{m_tel},#{m_rrn},#{m_email},#{m_area})
 	</insert>
+	
+	<insert id="ceoInsert">
+		INSERT INTO C VALUES(#{c_id},#{c_pw},#{c_name},#{c_tel},#{c_rn},#{c_email})
+	</insert>
+	<select id="memberDoubleChk" resultType="integer">
+		SELECT COUNT(*) FROM M WHERE M_ID = #{m_id}
+	</select>
+	
+	<select id="ceoDoubleChk" resultType="integer">
+		SELECT COUNT(*) FROM C WHERE C_ID = #{m_id}
+	</select>
+	
+	<select id="ceoCheckNumber" resultType="integer">
+		SELECT COUNT(*) FROM C WHERE C_RN = #{c_rn}
+	</select>
+	
 	<select id="testDao" resultType="String">
 	    SELECT M_ID FROM MEMBER WHERE M_ID=#{testcode}
 	</select>
